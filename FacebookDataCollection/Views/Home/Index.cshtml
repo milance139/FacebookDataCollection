@@ -1,0 +1,98 @@
+﻿@model FacebookDataCollection.Models.FacebookModels.FacebookData
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        td, th {
+            padding: 10px 5px;
+        }
+        .editor-class {
+            margin-left: 20px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <br />
+        @if (Model == null)
+        {
+            @Html.ActionLink("Login with Facebook", "Facebook", "Home", null, new { @class = "btn btn-primary" }) 
+        }
+        else
+        {
+            using (Html.BeginForm("DownloadJson", "Home", FormMethod.Post))
+            {
+                <h3>Facebook Data:</h3>
+                @Html.HiddenFor(model => model.Id)
+                <table class="table">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Birthday</th>
+                        <th>Hometown</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(model => model.FirstName)
+                            @Html.HiddenFor(model => model.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.LastName)
+                            @Html.HiddenFor(model => model.LastName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Email)
+                            @Html.HiddenFor(model => model.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(model => model.Birthday)
+                            @Html.HiddenFor(model => model.Birthday)
+                        </td>
+                        <td>
+                            @Html.HiddenFor(model => model.Hometown.Id)
+                            @Html.DisplayFor(model => model.Hometown.Name)
+                            @Html.HiddenFor(model => model.Hometown.Name)
+                        </td>
+                    </tr>
+                </table>
+
+                <h3>Editable Posts:</h3>
+                <ul class="list-group" style="width: 500px">
+                    @for (var i = 0; i < Model.Posts.Posts.Count; i++)
+                    {
+                        <li class="list-group-item">
+                            <div>
+                                <strong>Posted:</strong> @Model.Posts.Posts[i].CreatedTime.ToString("dd.MM.yyyy h:mm")
+                                @Html.HiddenFor(model => model.Posts.Posts[i].CreatedTime)
+                                @Html.HiddenFor(model => model.Posts.Posts[i].Id)
+                            </div>
+                            <div>
+                                @Html.TextAreaFor(model => model.Posts.Posts[i].Message, new { @class = "editor-class", Name = $"Posts.Posts[{i}].Message" })
+                            </div>
+                        </li>
+                    }
+                </ul>
+
+
+                <button type="submit" class="btn btn-primary">Download JSON</button>
+            }
+        }
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.btn-primary').click(function () {
+                window.location.href = '@Url.Action("Facebook", "Home")';
+            });
+        });
+    </script>
+</body>
+</html>
