@@ -10,6 +10,18 @@ Before running the project, ensure that you have the following prerequisites ins
 
 Getting Started
 
+To setup Facebook App, follow these steps:
+    
+    Visit the Facebook Developers website at https://developers.facebook.com and log in with your Facebook account.
+
+    Click on "My Apps" in the top-right corner and select "Create App" from the dropdown menu.
+
+    Enter a name for your app and select a category that best describes your app. Click on "Create App" to proceed.
+
+    On the dashboard page of your newly created app, navigate to the "Settings" tab in the left sidebar.
+
+    In the "Basic" section, you'll find the "App ID" and "App Secret" values. These are the credentials you'll need to configure your application. Keep this information secure and private.
+
 To get started with the project, follow these steps:
 
     Clone the repository to your local machine.
