@@ -74,6 +74,6 @@ Acknowledgments
 
 Contact
 
-If you have any questions or suggestions, feel free to contact us at milance139@outlook.com
+If you have any questions or suggestions, feel free to contact me at milance139@outlook.com
 
 Feel free to modify the README file as per your project requirements and add any additional sections or instructions you think are necessary.
